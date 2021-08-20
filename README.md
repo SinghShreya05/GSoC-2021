@@ -1,1 +1,1 @@
-<h1 align="center">Google Summer of Code 2021 <img src="Assets\wcoding.gif" width="50"></h1>
+<h1 align="center">Google Summer of Code 2021 <img src="Assets\header.gif" width="100"></h1>

@@ -26,7 +26,7 @@ Why there is need to generate dataset?
 2. Advanced Architectures and algorithms such as LSTMs, GRU, BERT, WordNET, etc. require huge volumes of dataset before achieving the ability to outperform the accuracy of even traditional algorithms such as TF-IDF , n-gram etc. 
 3. Licenses differ from traditional corpora, because of which 50-60% keywords are similar in any two licences, and if the licences have the same licence heading but different versions, they're around 90% similar.
 
-There was a loose implementation of n-gramming different permutations and combinations of license text paragraphs. Ref: [SPDX-OSS Dataset](https://github.com/hastagAB/SPDX-OSS-Dataset). This method needs further improvement to make the dataset more accurate and realistic.
+There was a loose implementation of n-gramming different permutations and combinations of license text paragraphs. Ref: [SPDX-OSS Dataset](https://github.com/hastagAB/SPDX-OSS-Dataset). This method needed further improvement to make the dataset more accurate and realistic.
 
 
 The main idea was to intially split the licenses on different permutations and combinations of license text paragraphs maintaining sliding window approach and use these existing files as a baseline model for further manipulating and generating texts. Added FOSSology Nomos agent STRINGS.in regex to the files.
@@ -44,13 +44,16 @@ I worked on a script to download the licenses from SPDX, SPDX-exceptions, FOSSol
 Script : [download](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/Download-licenses-Script)
 
 For SPDX licenseListVersion: 3.13, files downloaded are : [files](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/Original-SPDX-Dataset)
+
 Original FOSSology db licenses : [files](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/Original-DB-Foss-Dataset)
 
 ### GENERATED FILES THROUGH INITIAL SPLIT
 For splliting the licenses, init 
 
 Script : [initial_split](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/Script-Initial-Split)
+
 Files : [SPDX](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/Split-SPDX-licenses)
+
 Files : [FOSSologyDatabase](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/Split-DB-Foss-Licenses)
 
 ### GENERATED FILES BY ADDING REGEX TO SPLITTED FILES

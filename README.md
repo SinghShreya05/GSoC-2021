@@ -68,8 +68,7 @@ I have extracted regex from STRINGS.in file, scripts, extracted regex-csvs can b
 To the regex extracted from STRINGS.in file major task was to handle expansions i.e .{1,32}, .{1,64}. There were 3 cases considered, to generate ambiguous characters, replacing with empty string, or generating sequence of words from the license itself such that it holds proper meaning to it. Ambiguous characters were straightaway rejected after discussion with mentors. Validated the generated files from the second and third approach using NOMOS and observed that the third appraoach results are drastically better over the second approach. 
 So for the generating sequence of words, I worked on two algorithm and integrated it with the existing codebase. 
 
-1. NGRAM
-  </br>
+ 1. NGRAM
    <i>(basically a set of co-occurring words within a given window)</i>
    </br>
 2. MARKOV

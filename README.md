@@ -21,15 +21,15 @@
 - Codebase: [GitHub](https://github.com/fossology/Minerva-Dataset-Generation)
 - Documentation: [Wiki](https://fossology.github.io/gsoc/docs/2021/minerva/)
 
-Why there is need to generate dataset?
+Why there is a need to generate a dataset?
 1. To implement any Machine learning/Deep learning algorithm we need a better and bigger dataset of SPDX Licences. Due to the lack of dataset currently, all the 10 algorithms which have been tested on Atarashi are restricted to 59% accuracy. But unfortunately, there exists no such dataset for open source licenses on the web.
-2. Advanced Architectures and algorithms such as LSTMs, GRU, BERT, WordNET, etc. require huge volumes of dataset before achieving the ability to outperform the accuracy of even traditional algorithms such as TF-IDF , n-gram etc. 
-3. Licenses differ from traditional corpora, because of which 50-60% keywords are similar in any two licences, and if the licences have the same licence heading but different versions, they're around 90% similar.
+2. Advanced Architectures and algorithms such as LSTMs, GRU, BERT, WordNET, etc. require huge volumes of the dataset before achieving the ability to outperform the accuracy of even traditional algorithms such as TF-IDF, n-gram, etc. 
+3. Licenses differ from traditional corpora, because of which 50-60% keywords are similar in any two licenses, and if the licenses have the same license heading but different versions, they're around 90% similar.
 
 There was a loose implementation of n-gramming different permutations and combinations of license text paragraphs. Ref: [SPDX-OSS Dataset](https://github.com/hastagAB/SPDX-OSS-Dataset). This method needed further improvement to make the dataset more accurate and realistic.
 
 
-The main idea was to intially split the licenses on different permutations and combinations of license text paragraphs maintaining sliding window approach and use these existing files as a baseline model for further manipulating and generating texts. Added FOSSology Nomos agent STRINGS.in regex to the files.
+The main idea was to initially split the licenses into different permutations and combinations of license text paragraphs maintaining a sliding window approach and use these existing files as a baseline model for further manipulating and generating texts. Added FOSSology Nomos agent STRINGS.in regex to the files.
 
 <p align="center">
         <img src="Assets\work.gif" width="400" height="300">
@@ -70,8 +70,8 @@ Files : [SPDX](https://github.com/fossology/Minerva-Dataset-Generation/tree/main
 </br>
 Files : [FOSSologyDatabase](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/Split-DB-Foss-Licenses)
 
-### 3. GENERATED FILES BY ADDING REGEX TO SPLITTED FILES
-For license check and new dataset generation which satisfies each and every condition of regex for a license file, I used string generators through free and open source libraries such as [xeger](https://pypi.org/project/xeger/) , [intxeger](https://pypi.org/project/intxeger/) and whosoever comes lexicographically closer to the existing datasets in our database used with a threshold value being considered so that randomness in string generation of licenses can be kept at minimum. It has to be done lexicographically since relevance to existing datasets is maintained.
+### 3. GENERATED FILES BY ADDING REGEX TO FILES SPLITS
+For license check and new dataset generation which satisfies each and every condition of regex for a license file, I used string generators through free and open-source libraries such as [xeger](https://pypi.org/project/xeger/), [intxeger](https://pypi.org/project/intxeger/) and whosoever comes lexicographically closer to the existing datasets in our database used with a threshold value being considered so that randomness in string generation of licenses can be kept at a minimum. It has to be done lexicographically since relevance to existing datasets is maintained.
 
 <p align="center">
         <img src="Assets\regexsplit.png" width="400">
@@ -80,8 +80,8 @@ For license check and new dataset generation which satisfies each and every cond
 I have extracted regex from STRINGS.in file, scripts, extracted regex-csvs can be found in [STRINGSin-Regex-Extraction](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/STRINGSin-Regex-Extraction).
 
 ### 4. HANDLING REGEX EXPANSION
-To the regex extracted from STRINGS.in file major task was to handle expansions i.e .{1,32}, .{1,64}. There were 3 cases considered, to generate ambiguous characters, replacing with empty string, or generating sequence of words from the license itself such that it holds proper meaning to it. Ambiguous characters were straightaway rejected after discussion with mentors. Validated the generated files from the second and third approach using NOMOS and observed that the third appraoach results are drastically better over the second approach. 
-So for the generating sequence of words, I worked on two algorithm and integrated it with the existing codebase. 
+To the regex extracted from STRINGS.in file major task was to handle expansions i.e .{1,32}, .{1,64}. There were 3 cases considered, to generate ambiguous characters, replacing with an empty string, or generating a sequence of words from the license itself such that it holds proper meaning to it. Ambiguous characters were straightaway rejected after discussion with mentors. Validated the generated files from the second and third approaches using NOMOS and observed that the third approach results are drastically better than the second approach. 
+So for the generating sequence of words, I worked on two algorithms and integrated them with the existing codebase. 
 
 A. NGRAM
 </br>
@@ -109,7 +109,7 @@ To generate licenses with ngram expansion:
 After getting validated by NOMOS, Ngram regex expansion performed better than Markov expansion.
 
 ### 5. VALIDATION OF FILES GENERATED
-We use Nomos to identify the licences, either with license headers with which its regex matches or labels such as Unclassified licenses, No License found, Public-domain, Restricted, and so on. This is a base line validation for the resulting text files. Terminal command to run this will be  : 
+We use Nomos to identify the licenses, either with license headers with which its regex matches or labels such as Unclassified licenses, No License found, Public-domain, Restricted, and so on. This is a baseline validation for the resulting text files. Terminal command to run this will be  : 
 ```
  sudo nomos -J -d <folder_with_files>
 ```
@@ -117,7 +117,7 @@ And to use multiple cores to validate files (here I am using 3 cores) :
 ```
  sudo nomos -J -d <folder_with_files> -n 3
 ```
-After the validation files were segregated into different folders, with license headers as foldernames. 
+After the validation files were segregated into different folders, with license headers as folder names. 
 
 This is a brief overview of the project.
 
@@ -128,7 +128,7 @@ This is a brief overview of the project.
 The entire codebase has now been moved to FOSSology : [Minerva-Dataset-Generation](https://github.com/fossology/Minerva-Dataset-Generation)
 
 ### 6. ADDED NOISE TO DATASET - AUGLY IMPLEMENTATION
-I have added noise to generated dataset using [Augly](https://github.com/facebookresearch/AugLy) for increasing both the size and the diversity of labeled training data which also helps to build robust ML models. Augly offers transformations in both function and class formats, as well as intensity functions to help us understand how intense a transformation is (based on the given parameters). AugLy can also create important metadata that will assist in understanding how your data was altered.
+I have added noise to the generated dataset using [Augly](https://github.com/facebookresearch/AugLy) for increasing both the size and the diversity of labeled training data which also helps to build robust ML models. Augly offers transformations in both function and class formats, as well as intensity functions to help us understand how intense a transformation is (based on the given parameters). AugLy can also create important metadata that will assist in understanding how your data was altered.
 
 <p align="center">
         <img src="Assets\augly.PNG" width="800" height="400">
@@ -140,21 +140,21 @@ After a discussion with the mentors, it was concluded that the licenses will be 
 
 <h1 align="center">🚀 FUTURE PLANS</h1>
 
-1. Experiment advanced NLP Algorithms for license generation and Validation techniques.
+1. Experiment with advanced NLP Algorithms for license generation and validation techniques.
 2. Normalisation of text files generated.
-3. Use the generated data for training ML Models.
-4. Writing custom hooks for repetitve code.
+3. Use the generated data for training ML models.
+4. Writing custom hooks for repetitive code.
 
 <h1 align="center">📚 Things I learned from Google Summer of Code</h1>
 
-1. To write optimised codes.
+1. To write optimized codes.
 2. Explored various NLP algorithms tested and implemented them.
 3. Sharpened my skill of GIT
 4. Learned the importance of time management as well as perfect deliverables.
 5. Worked on my scripting skills.
-6. Understood the importance of constructive discussions with the mentors and peers.
+6. Understood the importance of constructive discussions with mentors and peers.
 7. Improved my documentation skill
-8. Various open-source licenses and their importance in codes, projects and softwares.
+8. Various open-source licenses and their importance in codes, projects, and software.
 
 <img align="right" alt="GIF" src="Assets\ilovecoding.gif" width="400" />
 

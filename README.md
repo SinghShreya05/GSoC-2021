@@ -4,7 +4,7 @@
 ![Logo](/Assets/GSoC-FOSSology.png)
 
 <p align="center">
-        <img src="Assets\developer.gif" width="400">
+        <img src="Assets\developer.gif" width="800" height="400">
 </p>
 
 
@@ -32,28 +32,26 @@ There was a loose implementation of n-gramming different permutations and combin
 The main idea was to intially split the licenses on different permutations and combinations of license text paragraphs maintaining sliding window approach and use these existing files as a baseline model for further manipulating and generating texts. Added FOSSology Nomos agent STRINGS.in regex to the files.
 
 <p align="center">
-        <img src="Assets\work.gif" width="400">
+        <img src="Assets\work.gif" width="400" height="300">
 </p>
 
 ### DOWNLOADING RECENT RELEASED LICENSE FROM SPDX RELEASED JSON TO TXT FILES 
-SPDX License List is a list of commonly found licenses and exceptions used in free and open or collaborative software, data, hardware, or documentation, and releases are done on a quarterly basis (more or less) at the end of January, April, July, and October. SPDX Licenses were manually downloaded to txt format from [here](https://github.com/spdx/license-list-data/tree/master/text).
-Licenses JSON format can be downloaded from [this](https://github.com/spdx/license-list-data/tree/master/json)
+SPDX License List is a list of commonly found licenses and exceptions used in free and open or collaborative software, data, hardware, or documentation, and releases are done on a quarterly basis (more or less) at the end of January, April, July, and October. SPDX Licenses were manually downloaded to txt format from [license-list-data/text/](https://github.com/spdx/license-list-data/tree/master/text).
+Licenses JSON format can be downloaded from [license-list-data/json/](https://github.com/spdx/license-list-data/tree/master/json)
 
-I worked on a script to download the licenses from SPDX, SPDX-exceptions, FOSSology Database directly to txt format by passing JSON filepath of new release.
+I worked on a script to download the licenses from SPDX, SPDX-exceptions, FOSSology Database directly to txt format by passing JSON filepath of new release. Script : [download](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/Download-licenses-Script)
 
-Script : [download](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/Download-licenses-Script)
-
-For SPDX licenseListVersion: 3.13, files downloaded are : [files](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/Original-SPDX-Dataset)
-
-Original FOSSology db licenses : [files](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/Original-DB-Foss-Dataset)
+For SPDX licenseListVersion: 3.13, licenses downloaded are : [files](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/Original-SPDX-Dataset)
+</br>
+Original FOSSology db licenses <i>(SPDX licenses are subset of licenses present here)</i> : [files](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/Original-DB-Foss-Dataset)
 
 ### GENERATED FILES THROUGH INITIAL SPLIT
 For splliting the licenses, init 
 
 Script : [initial_split](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/Script-Initial-Split)
-
+</br>
 Files : [SPDX](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/Split-SPDX-licenses)
-
+</br>
 Files : [FOSSologyDatabase](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/Split-DB-Foss-Licenses)
 
 ### GENERATED FILES BY ADDING REGEX TO SPLITTED FILES

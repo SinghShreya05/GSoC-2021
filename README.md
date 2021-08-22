@@ -133,7 +133,10 @@ I have added noise to generated dataset using [Augly](https://github.com/faceboo
 <p align="center">
         <img src="Assets\augly.PNG" width="800" height="400">
 </p>
-Tested on a license over [Colab](https://colab.research.google.com/drive/1Tz1EXJffeoBj5lguDYse5UHP0EhXIemE?usp=sharing). After discussing with the mentors, it was decided that licenses will be manipulated using <i>SIMULATE TYPOS and REPLACE SIMILAR CHARACTERS</i>
+
+Tested on a license over : [Colab](https://colab.research.google.com/drive/1Tz1EXJffeoBj5lguDYse5UHP0EhXIemE?usp=sharing) 
+</br>
+After a discussion with the mentors, it was concluded that the licenses will be manipulated using <i>SIMULATE TYPOS and REPLACE SIMILAR CHARACTERS</i>
 
 <h1 align="center">🚀 FUTURE PLANS</h1>
 

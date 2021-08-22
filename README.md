@@ -48,7 +48,9 @@ Original FOSSology db licenses <i>(SPDX licenses are subset of licenses present 
 ### GENERATED FILES THROUGH INITIAL SPLIT
 The basic idea was n-gramming license text paragraphs such that we are able to maintain a sliding window, i.e for a licene with 4 paragraphs, all the different files that I wanted to generate were - para1, para2, para3, para4, para1+para2, para2+para3, para3+para4, para1+para2+para3, para2+para3+para4, para1+para2+para3+para4.
 <i>Not para1+para3, para1+para3+para4, etc. because the structure of licenses needs to be maintained.</i>
-
+```
+ python ./Script-Initial-Split/initial_split.py
+```
 Script : [initial_split](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/Script-Initial-Split)
 </br>
 Files : [SPDX](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/Split-SPDX-licenses)
@@ -62,19 +64,59 @@ For license check and new dataset generation which satisfies each and every cond
         <img src="Assets\regexsplit.png" width="400">
 </p>
 
+### SPDX recent release -> [SPDX](https://spdx.org/licenses/licenses.json)
+```
+ python ./Download-licenses-Script/spdx.py
+```
+### SPDX-exceptions recent release -> [SPDX-exceptions](https://spdx.org/licenses/exceptions.json)
+```
+ python ./Download-licenses-Script/exceptions.py
+```
+### Licenses in Fossology Database -> [licenseRef](https://raw.githubusercontent.com/fossology/fossology/master/install/db/licenseRef.json)
+```
+ python ./Download-licenses-Script/database-foss.py
+```
+
 I have extracted regex from STRINGS.in file, scripts, extracted regex-csvs can be found in [STRINGSin-Regex-Extraction](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/STRINGSin-Regex-Extraction).
 
 ### HANDLING REGEX EXPANSION
 To the regex extracted from STRINGS.in file major task was to handle expansions i.e .{1,32}, .{1,64}. There were 3 cases considered, to generate ambiguous characters, replacing with empty string, or generating sequence of words from the license itself such that it holds proper meaning to it. Ambiguous characters were straightaway rejected after discussion with mentors. Validated the generated files from the second and third approach using NOMOS and observed that the third appraoach results are drastically better over the second approach. 
 So for the generating sequence of words, I worked on two algorithm and integrated it with the existing codebase. 
 
- 1. NGRAM
-   <i>(basically a set of co-occurring words within a given window)</i>
-   </br>
-2. MARKOV
-  </br>
-   <i>(As an extension of Naive Bayes for sequential data, the Hidden Markov Model provides a joint distribution over the letters/tags with an assumption of the dependencies of variables x and y between adjacent tags.)</i>
+A. NGRAM
+</br>
+<i>(basically a set of co-occurring words within a given window)</i>
+</br>
+B. MARKOV
+</br>
+<i>(As an extension of Naive Bayes for sequential data, the Hidden Markov Model provides a joint distribution over the letters/tags with an assumption of the dependencies of variables x and y between adjacent tags.)</i>
 
+Added "Multiprocessing" to the Script to speed up the process of data generation.
+
+CODEBASE : [Ngram](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/ngram)
+</br>
+CODEBASE : [Markov](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/markov)
+
+After getting validated by NOMOS, Ngram regex expansion performed better than Markov expansion.
+
+### VALIDATION OF FILES GENERATED
+We use Nomos to identify the licences, either with license headers with which its regex matches or labels such as Unclassified licenses, No License found, Public-domain, Restricted, and so on. This is a base line validation for the resulting text files. Terminal command to run this will be  : 
+```
+ sudo nomos -J -d <folder_with_files>
+```
+And to use multiple cores to validate files (here I am using 3 cores) :
+```
+ sudo nomos -J -d <folder_with_files> -n 3
+```
+After the validation files were segregated into different folders, with license headers as foldernames. 
+
+This is a bried overview of the project.
+
+<p align="center">
+        <img src="Assets\project_overview.png" width="800" height="400">
+</p>
+
+The entire codebase has now been moved to FOSSology : [Minerva-Dataset-Generation](https://github.com/fossology/Minerva-Dataset-Generation)
 
 
 

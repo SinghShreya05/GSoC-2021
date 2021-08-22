@@ -131,16 +131,18 @@ The entire codebase has now been moved to FOSSology : [Minerva-Dataset-Generatio
 I have added noise to generated dataset using [Augly](https://github.com/facebookresearch/AugLy) for increasing both the size and the diversity of labeled training data which also helps to build robust ML models. Augly offers transformations in both function and class formats, as well as intensity functions to help us understand how intense a transformation is (based on the given parameters). AugLy can also create important metadata that will assist in understanding how your data was altered.
 
 <p align="center">
-        <img src="Assets\augly.PNG" width="500" height="400">
+        <img src="Assets\augly.PNG" width="800" height="400">
 </p>
 
 <h1 align="center">🚀 FUTURE PLANS</h1>
+
 1. Experiment advanced NLP Algorithms for license generation and Validation techniques.
 2. Normalisation of text files generated.
 3. Use the generated data for training ML Models.
 4. Writing custom hooks for repetitve code.
 
 <h1 align="center">📚 Things I learned from Google Summer of Code</h1>
+
 1. To write optimised codes.
 2. Explored various NLP algorithms tested and implemented them.
 3. Sharpened my skill of GIT

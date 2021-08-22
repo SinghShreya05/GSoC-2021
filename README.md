@@ -69,7 +69,6 @@ To the regex extracted from STRINGS.in file major task was to handle expansions 
 So for the generating sequence of words, I worked on two algorithm and integrated it with the existing codebase. 
 
 1. NGRAM
-</br>
 <i>(basically a set of co-occurring words within a given window)</i>
 </br>
 2. MARKOV

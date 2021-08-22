@@ -69,11 +69,12 @@ To the regex extracted from STRINGS.in file major task was to handle expansions 
 So for the generating sequence of words, I worked on two algorithm and integrated it with the existing codebase. 
 
 1. NGRAM
-<i>(basically a set of co-occurring words within a given window)</i>
-</br>
+  </br>
+   <i>(basically a set of co-occurring words within a given window)</i>
+   </br>
 2. MARKOV
-</br>
-<i>(As an extension of Naive Bayes for sequential data, the Hidden Markov Model provides a joint distribution over the letters/tags with an assumption of the dependencies of variables x and y between adjacent tags.)</i>
+  </br>
+   <i>(As an extension of Naive Bayes for sequential data, the Hidden Markov Model provides a joint distribution over the letters/tags with an assumption of the dependencies of variables x and y between adjacent tags.)</i>
 
 
 

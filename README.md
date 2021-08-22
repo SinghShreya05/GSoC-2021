@@ -35,7 +35,7 @@ The main idea was to intially split the licenses on different permutations and c
         <img src="Assets\work.gif" width="400" height="300">
 </p>
 
-### DOWNLOADING RECENT RELEASED LICENSE FROM SPDX RELEASED JSON TO TXT FILES 
+### 1. DOWNLOADING RECENT RELEASED LICENSE FROM SPDX RELEASED JSON TO TXT FILES 
 SPDX License List is a list of commonly found licenses and exceptions used in free and open or collaborative software, data, hardware, or documentation, and releases are done on a quarterly basis (more or less) at the end of January, April, July, and October. SPDX Licenses were manually downloaded to txt format from [license-list-data/text/](https://github.com/spdx/license-list-data/tree/master/text).
 Licenses JSON format can be downloaded from [license-list-data/json/](https://github.com/spdx/license-list-data/tree/master/json)
 
@@ -45,8 +45,21 @@ For SPDX licenseListVersion: 3.13, licenses downloaded are : [files](https://git
 </br>
 Original FOSSology db licenses <i>(SPDX licenses are subset of licenses present here)</i> : [files](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/Original-DB-Foss-Dataset)
 
-### GENERATED FILES THROUGH INITIAL SPLIT
-The basic idea was n-gramming license text paragraphs such that we are able to maintain a sliding window, i.e for a licene with 4 paragraphs, all the different files that I wanted to generate were - para1, para2, para3, para4, para1+para2, para2+para3, para3+para4, para1+para2+para3, para2+para3+para4, para1+para2+para3+para4.
+#### SPDX recent release : [SPDX](https://spdx.org/licenses/licenses.json)
+```
+ python ./Download-licenses-Script/spdx.py
+```
+#### SPDX-exceptions recent release : [SPDX-exceptions](https://spdx.org/licenses/exceptions.json)
+```
+ python ./Download-licenses-Script/exceptions.py
+```
+#### Licenses in Fossology Database : [licenseRef](https://raw.githubusercontent.com/fossology/fossology/master/install/db/licenseRef.json)
+```
+ python ./Download-licenses-Script/database-foss.py
+```
+
+### 2. GENERATED FILES THROUGH INITIAL SPLIT
+The basic idea was n-gramming license text paragraphs such that we are able to maintain a sliding window, i.e for a licene with 4 paragraphs, all the different files that I wanted to generate were - <i>para1, para2, para3, para4, para1+para2, para2+para3, para3+para4, para1+para2+para3, para2+para3+para4, para1+para2+para3+para4.</i>
 <i>Not para1+para3, para1+para3+para4, etc. because the structure of licenses needs to be maintained.</i>
 ```
  python ./Script-Initial-Split/initial_split.py
@@ -57,29 +70,16 @@ Files : [SPDX](https://github.com/fossology/Minerva-Dataset-Generation/tree/main
 </br>
 Files : [FOSSologyDatabase](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/Split-DB-Foss-Licenses)
 
-### GENERATED FILES BY ADDING REGEX TO SPLITTED FILES
+### 3. GENERATED FILES BY ADDING REGEX TO SPLITTED FILES
 For license check and new dataset generation which satisfies each and every condition of regex for a license file, I used string generators through free and open source libraries such as [xeger](https://pypi.org/project/xeger/) , [intxeger](https://pypi.org/project/intxeger/) and whosoever comes lexicographically closer to the existing datasets in our database used with a threshold value being considered so that randomness in string generation of licenses can be kept at minimum. It has to be done lexicographically since relevance to existing datasets is maintained.
 
 <p align="center">
         <img src="Assets\regexsplit.png" width="400">
 </p>
 
-### SPDX recent release -> [SPDX](https://spdx.org/licenses/licenses.json)
-```
- python ./Download-licenses-Script/spdx.py
-```
-### SPDX-exceptions recent release -> [SPDX-exceptions](https://spdx.org/licenses/exceptions.json)
-```
- python ./Download-licenses-Script/exceptions.py
-```
-### Licenses in Fossology Database -> [licenseRef](https://raw.githubusercontent.com/fossology/fossology/master/install/db/licenseRef.json)
-```
- python ./Download-licenses-Script/database-foss.py
-```
-
 I have extracted regex from STRINGS.in file, scripts, extracted regex-csvs can be found in [STRINGSin-Regex-Extraction](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/STRINGSin-Regex-Extraction).
 
-### HANDLING REGEX EXPANSION
+### 4. HANDLING REGEX EXPANSION
 To the regex extracted from STRINGS.in file major task was to handle expansions i.e .{1,32}, .{1,64}. There were 3 cases considered, to generate ambiguous characters, replacing with empty string, or generating sequence of words from the license itself such that it holds proper meaning to it. Ambiguous characters were straightaway rejected after discussion with mentors. Validated the generated files from the second and third approach using NOMOS and observed that the third appraoach results are drastically better over the second approach. 
 So for the generating sequence of words, I worked on two algorithm and integrated it with the existing codebase. 
 
@@ -93,13 +93,22 @@ B. MARKOV
 
 Added "Multiprocessing" to the Script to speed up the process of data generation.
 
-CODEBASE : [Ngram](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/ngram)
+Codebase : [Ngram](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/ngram)
 </br>
-CODEBASE : [Markov](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/markov)
+To generate licenses with ngram expansion:
+```
+ python ./ngram/licenses.py
+```
+Codebase : [Markov](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/markov)
+</br>
+To generate licenses with ngram expansion:
+```
+ python ./markov/markov_licenses.py
+```
 
 After getting validated by NOMOS, Ngram regex expansion performed better than Markov expansion.
 
-### VALIDATION OF FILES GENERATED
+### 5. VALIDATION OF FILES GENERATED
 We use Nomos to identify the licences, either with license headers with which its regex matches or labels such as Unclassified licenses, No License found, Public-domain, Restricted, and so on. This is a base line validation for the resulting text files. Terminal command to run this will be  : 
 ```
  sudo nomos -J -d <folder_with_files>
@@ -110,7 +119,7 @@ And to use multiple cores to validate files (here I am using 3 cores) :
 ```
 After the validation files were segregated into different folders, with license headers as foldernames. 
 
-This is a bried overview of the project.
+This is a brief overview of the project.
 
 <p align="center">
         <img src="Assets\project_overview.png" width="800" height="400">
@@ -118,5 +127,26 @@ This is a bried overview of the project.
 
 The entire codebase has now been moved to FOSSology : [Minerva-Dataset-Generation](https://github.com/fossology/Minerva-Dataset-Generation)
 
+### 6. ADDED NOISE TO DATASET - AUGLY IMPLEMENTATION
+I have added noise to generated dataset using [Augly](https://github.com/facebookresearch/AugLy) for increasing both the size and the diversity of labeled training data which also helps to build robust ML models. Augly offers transformations in both function and class formats, as well as intensity functions to help us understand how intense a transformation is (based on the given parameters). AugLy can also create important metadata that will assist in understanding how your data was altered.
 
+<p align="center">
+        <img src="Assets\augly.PNG" width="500" height="400">
+</p>
+
+<h1 align="center">🚀 FUTURE PLANS</h1>
+1. Experiment advanced NLP Algorithms for license generation and Validation techniques.
+2. Normalisation of text files generated.
+3. Use the generated data for training ML Models.
+4. Writing custom hooks for repetitve code.
+
+<h1 align="center">📚 Things I learned from Google Summer of Code</h1>
+1. To write optimised codes.
+2. Explored various NLP algorithms tested and implemented them.
+3. Sharpened my skill of GIT
+4. Learned the importance of time management as well as perfect deliverables.
+5. Worked on my scripting skills.
+6. Understood the importance of constructive discussions with the mentors and peers.
+7. Improved my documentation skill
+8. Various open-source licenses and their importance in codes, projects and softwares.
 

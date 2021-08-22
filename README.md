@@ -10,7 +10,7 @@
 
 ![ViewCount](https://views.whatilearened.today/views/github/SinghShreya05/GSoC-2021.svg)
 ![GitHub](https://img.shields.io/github/followers/SinghShreya05?style=social)
-![GitHub Stars](https://img.shields.io/github/stars/SinghShreya05/GSoC-2021?style=social)
+![GitHub Stars](https://img.shields.io/github/stars/SinghShreya05?style=social)
 
 ## Google Summer of Code 2021 🚩 Report: "MINERVA" <img src="Assets\wcoding.gif" width="80">
 

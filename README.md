@@ -46,7 +46,8 @@ For SPDX licenseListVersion: 3.13, licenses downloaded are : [files](https://git
 Original FOSSology db licenses <i>(SPDX licenses are subset of licenses present here)</i> : [files](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/Original-DB-Foss-Dataset)
 
 ### GENERATED FILES THROUGH INITIAL SPLIT
-For splliting the licenses, init 
+The basic idea was n-gramming license text paragraphs such that we are able to maintain a sliding window, i.e for a licene with 4 paragraphs, all the different files that I wanted to generate were - para1, para2, para3, para4, para1+para2, para2+para3, para3+para4, para1+para2+para3, para2+para3+para4, para1+para2+para3+para4.
+<i>Not para1+para3, para1+para3+para4, etc. because the structure of licenses needs to be maintained.</i>
 
 Script : [initial_split](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/Script-Initial-Split)
 </br>
@@ -60,6 +61,21 @@ For license check and new dataset generation which satisfies each and every cond
 <p align="center">
         <img src="Assets\regexsplit.png" width="400">
 </p>
+
+I have extracted regex from STRINGS.in file, scripts, extracted regex-csvs can be found in [STRINGSin-Regex-Extraction](https://github.com/fossology/Minerva-Dataset-Generation/tree/main/STRINGSin-Regex-Extraction).
+
+### HANDLING REGEX EXPANSION
+To the regex extracted from STRINGS.in file major task was to handle expansions i.e .{1,32}, .{1,64}. There were 3 cases considered, to generate ambiguous characters, replacing with empty string, or generating sequence of words from the license itself such that it holds proper meaning to it. Ambiguous characters were straightaway rejected after discussion with mentors. Validated the generated files from the second and third approach using NOMOS and observed that the third appraoach results are drastically better over the second approach. 
+So for the generating sequence of words, I worked on two algorithm and integrated it with the existing codebase. 
+
+1. NGRAM
+</br>
+<i>(basically a set of co-occurring words within a given window)</i>
+</br>
+2. MARKOV
+</br>
+<i>(As an extension of Naive Bayes for sequential data, the Hidden Markov Model provides a joint distribution over the letters/tags with an assumption of the dependencies of variables x and y between adjacent tags.)</i>
+
 
 
 

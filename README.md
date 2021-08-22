@@ -122,7 +122,7 @@ After the validation files were segregated into different folders, with license 
 This is a brief overview of the project.
 
 <p align="center">
-        <img src="Assets\project_overview.png" width="800" height="400">
+        <img src="Assets\project_overview.png" width="800" height="500">
 </p>
 
 The entire codebase has now been moved to FOSSology : [Minerva-Dataset-Generation](https://github.com/fossology/Minerva-Dataset-Generation)
@@ -152,3 +152,9 @@ I have added noise to generated dataset using [Augly](https://github.com/faceboo
 7. Improved my documentation skill
 8. Various open-source licenses and their importance in codes, projects and softwares.
 
+<img align="right" alt="GIF" src="Assets\ilovecoding.gif" width="400" />
+
+# Let's get connected!
+- [Connect with me on LinkedIn](https://www.linkedin.com/in/shreyasingh05/)
+- [Give a follow on GitHub](https://github.com/SinghShreya05)
+- [Instagram](https://www.instagram.com/nottonlyyours/)

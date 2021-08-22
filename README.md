@@ -71,7 +71,6 @@ So for the generating sequence of words, I worked on two algorithm and integrate
 1. NGRAM
 </br>
 <i>(basically a set of co-occurring words within a given window)</i>
-</br>
 2. MARKOV
 </br>
 <i>(As an extension of Naive Bayes for sequential data, the Hidden Markov Model provides a joint distribution over the letters/tags with an assumption of the dependencies of variables x and y between adjacent tags.)</i>

@@ -142,17 +142,17 @@ After a discussion with the mentors, it was concluded that the licenses will be 
 
 1. Scripts to Download licenses (txt) from JSON file.
 2. License Generated using Sliding Window Approach <i>(that is initial split)</i>
-3. Scripts handling Regex Expansion using both the algorithms <i>(i.e Markov and Ngram)</i>
-4. Implemented Multiprocessing to License Generation. 
-5. Augly Implementation on Licenses <i>(Tested and will be continuing after training on generated dataset is done.)</i>
+3. Implemented Multiprocessing to License Generation. 
+4. Scripts handling Regex Expansion using both the algorithms <i>(i.e Markov and Ngram)</i> 
 5. Shifting the Codebase of Atarashi <i>(Discussed and implementation in progress)</i>
+5. Augly Implementation on Licenses <i>(Tested and will be continuing after training on generated dataset is done.)</i>
 
 <h1 align="center">🚀 FUTURE PLANS</h1>
 
-1. Experiment with advanced NLP Algorithms for license generation and validation techniques.
-2. Normalisation of text files generated.
+1. Normalisation of text files generated.
+2. Writing custom hooks for repetitive code.
 3. Use the generated data for training ML models.
-4. Writing custom hooks for repetitive code.
+4. Experiment with advanced NLP Algorithms for license generation and validation techniques.
 
 <h1 align="center">📚 Things I learned from Google Summer of Code</h1>
 

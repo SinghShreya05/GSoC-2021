@@ -138,6 +138,15 @@ Tested on a license over : [Colab](https://colab.research.google.com/drive/1Tz1E
 </br>
 After a discussion with the mentors, it was concluded that the licenses will be manipulated using <i>SIMULATE TYPOS and REPLACE SIMILAR CHARACTERS</i>
 
+<h1 align="center">👨🏻‍🏫 DELIVERABLES</h1>
+
+1. Scripts to Download licenses (txt) from JSON file.
+2. License Generated using Sliding Window Approach <i>(that is initial split)</i>
+3. Scripts handling Regex Expansion using both the algorithms <i>(i.e Markov and Ngram)</i>
+4. Implemented Multiprocessing to License Generation. 
+5. Augly Implementation on Licenses <i>(Tested and will be continuing after training on generated dataset is done.)</i>
+5. Shifting the Codebase of Atarashi <i>(Discussed and implementation in progress)</i>
+
 <h1 align="center">🚀 FUTURE PLANS</h1>
 
 1. Experiment with advanced NLP Algorithms for license generation and validation techniques.
